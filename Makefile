@@ -1,0 +1,4 @@
+all:	cloudfront_directory_index.zip
+
+cloudfront_directory_index.zip: cloudfront_directory_index.js
+	zip cloudfront_directory_index.zip cloudfront_directory_index.js
