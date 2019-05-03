@@ -1,28 +1,29 @@
+# Use data sources to retrieve account number and region.
+
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_role" "selected" {
   name = "lambda-edge-basic"
 }
 
+data "aws_region" "current" {}
+
 locals {
-  lambda_zip_path = "${path.module}/cloudfront_directory_index.zip"
+  account_id = "${data.aws_caller_identity.current.account_id}"
+  region     = "${data.aws_region.current.name}"
 }
 
 resource "aws_lambda_function" "default" {
-  function_name = "cloudfront-directory-index"
   description   = "Serve directory index.html files for Cloudfront"
-  handler       = "cloudfront_directory_index.handler"
+  function_name = "${var.function_name}"
+  runtime       = "${var.runtime}"
+  handler       = "index.handler"
   publish       = "true"
-
-  role    = "${data.aws_iam_role.selected.arn}"
-  runtime = "nodejs6.10"
-
-  filename         = "${local.lambda_zip_path}"
-  source_code_hash = "${base64sha256(file("${local.lambda_zip_path}"))}"
+  role          = "${data.aws_iam_role.selected.arn}"
+  s3_bucket     = "drone-${local.region}-${local.account_id}"
+  s3_key        = "cloudfront-directory-index/cloudfront-directory-index.zip"
 }
 
 output "qualified_arn" {
   value = "${aws_lambda_function.default.qualified_arn}"
-}
-
-output "version" {
-  value = "${aws_lambda_function.default.version}"
 }
