@@ -1,3 +1,7 @@
+/*
+ * Git commit hash: @TAG@
+ */
+
 'use strict';
 
 exports.handler = (event, context, callback) => {
