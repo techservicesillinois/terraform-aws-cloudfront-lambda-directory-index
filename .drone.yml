@@ -1,4 +1,10 @@
 pipeline:
+  test:
+    image: hashicorp/terraform
+    commands:
+      - apk add make
+      - make
+
   build:
     image: node:8.10-alpine
     commands:
@@ -20,8 +26,8 @@ pipeline:
   s3:
     image: plugins/s3
     region: us-east-1
-    bucket: drone-us-east-1-617683844790
     acl: bucket-owner-full-control
+    bucket: drone-us-east-1-617683844790
     source: cloudfront-directory-index.zip
     target: cloudfront-directory-index/
     when:
