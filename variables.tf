@@ -3,11 +3,16 @@
 # End users will ordinarily use the default values.
 
 variable "function_name" {
-  description = "Name of the lambda function and role to be deployed"
+  description = "Name of the lambda function to be deployed"
   default     = "cloudfront-directory-index"
 }
 
 variable "runtime" {
   description = "Lambda function's runtime environment"
-  default     = "nodejs8.10"
+  default     = "nodejs10.x"
+}
+
+variable "iam_role_name" {
+  description = "Lambda function's IAM role"
+  default     = "lambda-edge-basic"
 }
