@@ -15,8 +15,10 @@ exports.handler = (event, context, callback) => {
     // Match a trailing '/' in the URI, and replace with "index.html".
     var newuri = olduri.replace(/\/$/, '\/index.html');
 
-    // Log the old and new URIs.
-    console.log("rewrote URI from '" + olduri + "' to '" + newuri + "'")
+    // If we rewrote the URI, log both the old and new values.
+    if (newuri != olduri) {
+        console.log("rewrote URI from '" + olduri + "' to '" + newuri + "'")
+    }
 
     // Update the request with the modified URI and return to CloudFront.
     request.uri = newuri;
