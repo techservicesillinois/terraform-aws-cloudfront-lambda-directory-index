@@ -1,1 +1,7 @@
-!cloudfront_directory_index.zip
+*.swp
+
+terraform.tfstate
+terraform.tfstate.*
+
+.terraform
+.terragrunt-cache
