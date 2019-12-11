@@ -1,0 +1,6 @@
+pipeline:
+  test:
+    image: hashicorp/terraform:0.11.13
+    commands:
+      - apk add make
+      - make
