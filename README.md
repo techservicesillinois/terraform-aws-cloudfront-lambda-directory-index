@@ -2,9 +2,11 @@
 
 [![Build Status](https://drone.techservices.illinois.edu/api/badges/techservicesillinois/terraform-aws-cloudfront-lambda-directory-index/status.svg)](https://drone.techservices.illinois.edu/techservicesillinois/terraform-aws-cloudfront-lambda-directory-index)
 
-Provides a Lambda@Edge function resource for use with AWS CloudFront.
-When used with CloudFront this function will append `index.html`
-to requests ending in a slash `/`.
+Provides a Lambda@Edge origin-request trigger function resource for
+use with AWS CloudFront.  When used with CloudFront this function
+will append `index.html` to requests ending in a slash `/`. A lambda
+alias `latest` is also provided pointing to the most recently
+published function version.
 
 Argument Reference
 -----------------
