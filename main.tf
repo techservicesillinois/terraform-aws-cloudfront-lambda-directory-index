@@ -17,6 +17,7 @@ resource "aws_lambda_function" "default" {
   role             = data.aws_iam_role.selected.arn
   filename         = data.archive_file.selected.output_path
   source_code_hash = data.archive_file.selected.output_base64sha256
+  tags             = var.tags
 }
 
 # CloudFront requires a version, and does not support the use of
@@ -24,6 +25,9 @@ resource "aws_lambda_function" "default" {
 # $LATEST for the qualified ARN. To work around this we create an
 # alias latest that points to the most recently published version
 # of the lambda code.
+#
+# NOTE: There seems to be a timing issue, making it  occasionally necessary
+# to run twice so that the "latest" alias is updated correctly.
 #
 # https://github.com/terraform-providers/terraform-provider-aws/issues/10038
 resource "aws_lambda_alias" "default" {
