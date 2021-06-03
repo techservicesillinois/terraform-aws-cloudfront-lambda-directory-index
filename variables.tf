@@ -9,10 +9,15 @@ variable "function_name" {
 
 variable "runtime" {
   description = "Lambda function's runtime environment"
-  default     = "nodejs10.x"
 }
 
 variable "iam_role_name" {
   description = "Lambda function's IAM role"
   default     = "lambda-edge-basic"
+}
+
+variable "tags" {
+  description = "A mapping of tags to be supplied to resources where supported"
+  type        = map(string)
+  default     = {}
 }
