@@ -16,8 +16,7 @@ The following arguments are supported:
 * `function_name` - (Optional) Name of the lambda function and role
 to be deployed (Default cloudfront-directory-index).
 
-* `runtime` - (Optional) Lambda function's runtime environment
-(Default nodejs10.x).
+* `runtime` - Lambda function's runtime environment.
 
 * `iam_role_name` - (Optional) Lambda function's IAM role (Default
 "lambda-edge-basic")
